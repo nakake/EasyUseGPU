@@ -1,4 +1,4 @@
-#include "CWindow.hpp"
+#include "Window.hpp"
 #include "WindowProc.hpp"
 
 namespace eug 
@@ -20,10 +20,8 @@ namespace eug
 			return;
 		}
 	}
-
-	CWindow::CWindow() {}
 	
-	CWindow::~CWindow() 
+	Window::~Window() 
 	{
 		if (m_hInstance != nullptr) 
 		{
@@ -39,7 +37,7 @@ namespace eug
 		m_hWnd = nullptr;
 	}
 	
-	void CWindow::init() 
+	void Window::init() 
 	{
 		
 		m_hInstance = GetModuleHandleW(nullptr);
@@ -51,17 +49,19 @@ namespace eug
 
 		m_windowClassName = L"MainWindow";
 
+		//ウィンドウクラスの登録
 		RegisterWindowClass(m_hInstance, m_windowClassName.c_str());
 
 		auto style = WS_OVERLAPPEDWINDOW;
 
+		//ウィンドウの生成
 		m_hWnd = CreateWindowExW(
 			0,
 			m_windowClassName.c_str(),
-			m_windowClassName.c_str(),
+			L"EasyUseGPU",
 			style,
-			CW_USEDEFAULT, CW_USEDEFAULT, 
-			CW_USEDEFAULT, CW_USEDEFAULT,
+			m_x, m_y, 
+			m_Width, m_Height,
 			nullptr,
 			nullptr,
 			m_hInstance,
@@ -72,24 +72,22 @@ namespace eug
 		{
 			return;
 		}
-		update();
+
+		//ウィンドウの更新
+		show();
 	}
 
-	void CWindow::update() 
+	void Window::update() 
 	{
 		show();
 	}
 
-	void CWindow::show() 
+	void Window::show() 
 	{
 		ShowWindow(m_hWnd, SW_SHOWNORMAL);
 		UpdateWindow(m_hWnd);
 		SetFocus(m_hWnd);
 	}
 
-	void* CWindow::getHandle() 
-	{
-		return m_hWnd;
-	}
 }
 

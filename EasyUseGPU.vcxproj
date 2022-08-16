@@ -137,20 +137,32 @@
   <ItemGroup>
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\EasyUseGPUMain.cpp" />
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Engine\EasyUseGPUEngine.cpp" />
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Graphics\Direct3D12\Descriptor\D3D12DescriptorHeap.cpp" />
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Graphics\GraphicsEngine.cpp" />
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\System\System.cpp" />
-    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Window\CWindow.cpp" />
-    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Window\IWindow.hpp" />
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Window\Window.cpp" />
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Window\WindowOptions.cpp" />
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Window\WindowProc.cpp" />
     <ClCompile Include="EasyUseGPU\src\userMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EasyUseGPU\include\EasyUseGPU.hpp" />
+    <ClInclude Include="EasyUseGPU\include\EasyUseGPU\Direct3D12\Direct3D12.hpp" />
     <ClInclude Include="EasyUseGPU\include\EasyUseGPU\Windows\Windows.hpp" />
     <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Engine\EasyUseGPUEngine.hpp" />
     <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Engine\EngineFactory.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Engine\EngineState.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\Direct3D12\CmdList\D3D12CmdList.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\Direct3D12\CmdQueue\D3D12CmdQueue.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\Direct3D12\Descriptor\D3D12DescriptorHeap.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\Direct3D12\Device\D3D12Device.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\Direct3D12\Fence\D3D12Fence.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\Direct3D12\RenderTarget\D3D12RenderTargetView.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\DXGI\Factory\DXGIFactorys.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\DXGI\SwapChain\DXGISwapChain.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\GraphicsEngine.hpp" />
     <ClInclude Include="EasyUseGPU\src\EasyUseGPU\System\System.hpp" />
-    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Window\CWindow.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Window\Window.hpp" />
     <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Window\WindowOptions.hpp" />
     <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Window\WindowProc.hpp" />
   </ItemGroup>

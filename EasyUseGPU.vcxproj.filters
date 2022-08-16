@@ -25,6 +25,42 @@
     <Filter Include="src\EasyUseGPU\System">
       <UniqueIdentifier>{f2f5f0bc-5f3f-4722-901c-4e681a817131}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\EasyUseGPU\Graphics">
+      <UniqueIdentifier>{8ea7bc0d-3746-46e0-a280-7f3638f4bcb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EasyUseGPU\Graphics\Direct3D12">
+      <UniqueIdentifier>{2885af66-4002-488d-b382-0e098852dc66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\EasyUseGPU\Direct3D12">
+      <UniqueIdentifier>{8d746b9e-8f62-46a4-ba9f-b0988b9fa3a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EasyUseGPU\Graphics\DXGI">
+      <UniqueIdentifier>{f01b1612-b84f-4609-81e9-c7a2e75c1a65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EasyUseGPU\Graphics\Direct3D12\CmdList">
+      <UniqueIdentifier>{e20b4508-813c-4032-9ef5-07473f4dfcd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EasyUseGPU\Graphics\Direct3D12\CmdQueue">
+      <UniqueIdentifier>{6f2f681d-ffc8-4fbb-bee2-69089c3955a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EasyUseGPU\Graphics\Direct3D12\Device">
+      <UniqueIdentifier>{62a62722-bcc4-44dd-87cb-53df0c08d15b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EasyUseGPU\Graphics\Direct3D12\Descriptor">
+      <UniqueIdentifier>{0945755b-401f-451c-bfff-ebde68f3a717}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EasyUseGPU\Graphics\Direct3D12\Fence">
+      <UniqueIdentifier>{fb61ec75-b55b-4134-8500-ba61411a7709}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EasyUseGPU\Graphics\Direct3D12\RenderTarget">
+      <UniqueIdentifier>{69c69b23-1c70-4c66-810f-febe11908b90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EasyUseGPU\Graphics\DXGI\Factory">
+      <UniqueIdentifier>{e1306613-a5d1-4ed5-971a-25adb9ccf8ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EasyUseGPU\Graphics\DXGI\SwapChain">
+      <UniqueIdentifier>{f847d029-0771-41dd-9cc1-e4d2793965de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\EasyUseGPUMain.cpp">
@@ -33,10 +69,7 @@
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Window\WindowProc.cpp">
       <Filter>src\EasyUseGPU\Window</Filter>
     </ClCompile>
-    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Window\IWindow.hpp">
-      <Filter>src\EasyUseGPU\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Window\CWindow.cpp">
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Window\Window.cpp">
       <Filter>src\EasyUseGPU\Window</Filter>
     </ClCompile>
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Window\WindowOptions.cpp">
@@ -51,12 +84,18 @@
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\System\System.cpp">
       <Filter>src\EasyUseGPU\System</Filter>
     </ClCompile>
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Graphics\GraphicsEngine.cpp">
+      <Filter>src\EasyUseGPU\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Graphics\Direct3D12\Descriptor\D3D12DescriptorHeap.cpp">
+      <Filter>src\EasyUseGPU\Graphics\Direct3D12\Descriptor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Window\WindowProc.hpp">
       <Filter>src\EasyUseGPU\Window</Filter>
     </ClInclude>
-    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Window\CWindow.hpp">
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Window\Window.hpp">
       <Filter>src\EasyUseGPU\Window</Filter>
     </ClInclude>
     <ClInclude Include="EasyUseGPU\include\EasyUseGPU\Windows\Windows.hpp">
@@ -76,6 +115,39 @@
     </ClInclude>
     <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Engine\EngineFactory.hpp">
       <Filter>src\EasyUseGPU\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="EasyUseGPU\include\EasyUseGPU\Direct3D12\Direct3D12.hpp">
+      <Filter>include\EasyUseGPU\Direct3D12</Filter>
+    </ClInclude>
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\GraphicsEngine.hpp">
+      <Filter>src\EasyUseGPU\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Engine\EngineState.hpp">
+      <Filter>src\EasyUseGPU\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\Direct3D12\CmdList\D3D12CmdList.hpp">
+      <Filter>src\EasyUseGPU\Graphics\Direct3D12\CmdList</Filter>
+    </ClInclude>
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\Direct3D12\CmdQueue\D3D12CmdQueue.hpp">
+      <Filter>src\EasyUseGPU\Graphics\Direct3D12\CmdQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\Direct3D12\Device\D3D12Device.hpp">
+      <Filter>src\EasyUseGPU\Graphics\Direct3D12\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\Direct3D12\Descriptor\D3D12DescriptorHeap.hpp">
+      <Filter>src\EasyUseGPU\Graphics\Direct3D12\Descriptor</Filter>
+    </ClInclude>
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\Direct3D12\Fence\D3D12Fence.hpp">
+      <Filter>src\EasyUseGPU\Graphics\Direct3D12\Fence</Filter>
+    </ClInclude>
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\Direct3D12\RenderTarget\D3D12RenderTargetView.hpp">
+      <Filter>src\EasyUseGPU\Graphics\Direct3D12\RenderTarget</Filter>
+    </ClInclude>
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\DXGI\Factory\DXGIFactorys.hpp">
+      <Filter>src\EasyUseGPU\Graphics\DXGI\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\DXGI\SwapChain\DXGISwapChain.hpp">
+      <Filter>src\EasyUseGPU\Graphics\DXGI\SwapChain</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
