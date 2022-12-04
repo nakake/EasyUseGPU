@@ -3,6 +3,7 @@
 #include <EasyUseGPU/Direct3D12/Direct3D12.hpp>
 #include <EasyUseGPU/Engine/EasyUseGPUEngine.hpp>
 #include <EasyUseGPU/Engine/EngineFactory.hpp>
+#include <EasyUseGPU/System/System.hpp>
 
 void Main();
 
@@ -29,6 +30,7 @@ int WINAPI _tWinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPTSTR, _In_ int)
 	using namespace eug;
 
 	EngineCreate();
+	engine->Init();
 	Main();
  	return 0;
 }

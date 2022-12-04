@@ -1,8 +1,13 @@
 #include "WindowOptions.hpp"
 #include <EasyUseGPU/Windows/Windows.hpp>
+#include <EasyUseGPU/Engine/EasyUseGPUEngine.hpp>
+
+void Update();
+void Draw();
 
 namespace eug
 {
+
 	bool PumpMessages()
 	{
 		MSG msg = {};

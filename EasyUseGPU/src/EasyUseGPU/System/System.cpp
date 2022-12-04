@@ -3,9 +3,25 @@
 
 namespace eug {
 	namespace System {
-		bool update() {
-			//engine->GetWindow()->update();
-			return PumpMessages();
+		//ŒŸØ—p
+		
+		bool Run() {
+			engine->Init();
+			while (PumpMessages()){
+				engine->StartRender();
+				engine->EndRender();
+			}
+			return true;
+		}
+
+		bool Updata() {
+			engine->EndRender();
+
+			if (PumpMessages()) {
+				engine->StartRender();
+				return true;
+			}
+			return false;
 		}
 	}
 }

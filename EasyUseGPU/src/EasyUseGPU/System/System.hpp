@@ -4,6 +4,7 @@
 
 namespace eug {
 	namespace System {
-		bool update();
+		bool Run();
+		bool Updata();
 	}
 }

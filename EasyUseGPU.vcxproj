@@ -82,7 +82,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -97,6 +97,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -111,7 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -126,6 +127,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -135,10 +137,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\DirectX12\DebugInterface\DebugInterface.cpp" />
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\DirectX12\Direct3D12\CmdList\CmdListInit.cpp" />
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\DirectX12\Direct3D12\CmdList\Render.cpp" />
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\DirectX12\Direct3D12\Descriptor\DescriptorInit.cpp" />
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\DirectX12\Direct3D12\RenderTarget\ResouceBarrier.cpp" />
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\DirectX12\Direct3D12\RootSignature\RootSignatureInit.cpp" />
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\EasyUseGPUMain.cpp" />
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Engine\EasyUseGPUEngine.cpp" />
-    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Graphics\Direct3D12\Descriptor\D3D12DescriptorHeap.cpp" />
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Graphics\GraphicsEngine.cpp" />
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Graphics\GraphicsEngineInits.cpp" />
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Graphics\GraphicsRender.cpp" />
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Parallel\Engine\EngineInit.cpp" />
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Parallel\Engine\ParallelComputes.cpp" />
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Parallel\Engine\ParallelEngine.cpp" />
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Parallel\Engine\ParaTest.cpp" />
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Parallel\Modules\CmdList\ParaCmdListInit.cpp" />
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Parallel\Modules\Pipeline\ParaPipeline.cpp" />
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Parallel\Modules\Resource\UAV\ParaResource.cpp" />
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Parallel\Modules\RootSignature\ParaRootSignature.cpp" />
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Resource\ResourceManager\CreateUploadBuffer.cpp" />
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Resource\SamplePolygon\SamplePolygon.cpp" />
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Resource\VertexBuffer\VertexBuffer.cpp" />
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\System\System.cpp" />
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Window\Window.cpp" />
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Window\WindowOptions.cpp" />
@@ -147,24 +167,83 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EasyUseGPU\include\EasyUseGPU.hpp" />
+    <ClInclude Include="EasyUseGPU\include\EasyUseGPU\Direct3D12\d3dx12.h" />
     <ClInclude Include="EasyUseGPU\include\EasyUseGPU\Direct3D12\Direct3D12.hpp" />
     <ClInclude Include="EasyUseGPU\include\EasyUseGPU\Windows\Windows.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\DirectX12\DebugInterface\DebugInterface.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\DirectX12\Direct3D12\CmdList\D3D12CmdList.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\DirectX12\Direct3D12\CmdList\ICmdList.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\DirectX12\Direct3D12\CmdQueue\D3D12CmdQueue.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\DirectX12\Direct3D12\Descriptor\D3D12DescriptorHeap.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\DirectX12\Direct3D12\Device\D3D12Device.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\DirectX12\Direct3D12\Fence\D3D12Fence.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\DirectX12\Direct3D12\Pipeline\IPipeline.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\DirectX12\Direct3D12\RenderTarget\D3D12RenderTargetView.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\DirectX12\Direct3D12\RootSignature\D3D12RootSignature.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\DirectX12\Direct3D12\RootSignature\IRootSigunature.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\DirectX12\DXGI\Factory\DXGIFactorys.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\DirectX12\DXGI\SwapChain\DXGISwapChain.hpp" />
     <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Engine\EasyUseGPUEngine.hpp" />
     <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Engine\EngineFactory.hpp" />
     <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Engine\EngineState.hpp" />
-    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\Direct3D12\CmdList\D3D12CmdList.hpp" />
-    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\Direct3D12\CmdQueue\D3D12CmdQueue.hpp" />
-    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\Direct3D12\Descriptor\D3D12DescriptorHeap.hpp" />
-    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\Direct3D12\Device\D3D12Device.hpp" />
-    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\Direct3D12\Fence\D3D12Fence.hpp" />
-    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\Direct3D12\RenderTarget\D3D12RenderTargetView.hpp" />
-    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\DXGI\Factory\DXGIFactorys.hpp" />
-    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\DXGI\SwapChain\DXGISwapChain.hpp" />
     <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Graphics\GraphicsEngine.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Parallel\Engine\ParallelEngine.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Parallel\Modules\CmdList\ParaCmdList.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Resource\ResourceManager\ResourceManager.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Resource\SamplePolygon\SamplePolygon.hpp" />
+    <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Resource\VertexBuffer\VertexBuffer.hpp" />
     <ClInclude Include="EasyUseGPU\src\EasyUseGPU\System\System.hpp" />
     <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Window\Window.hpp" />
     <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Window\WindowOptions.hpp" />
     <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Window\WindowProc.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="EasyUseGPU\src\EasyUseGPU\Graphics\Shader\TestPixelShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.1</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.1</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.1</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.1</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="EasyUseGPU\src\EasyUseGPU\Graphics\Shader\TestVertexShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.1</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.1</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.1</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.1</ShaderModel>
+    </FxCompile>
+    <CustomBuild Include="EasyUseGPU\src\EasyUseGPU\Parallel\Shader\DefaultCS.hlsl">
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Compute</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Compute</ShaderType>
+      <FileType>Document</FileType>
+    </CustomBuild>
+    <CustomBuild Include="EasyUseGPU\src\EasyUseGPU\Parallel\Shader\TestCS.hlsl">
+      <FileType>Document</FileType>
+    </CustomBuild>
+    <FxCompile Include="EasyUseGPU\src\EasyUseGPU\Resource\TestShader\TestPS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="EasyUseGPU\src\EasyUseGPU\Resource\TestShader\TestVS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
