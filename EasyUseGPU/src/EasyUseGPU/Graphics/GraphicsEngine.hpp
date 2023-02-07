@@ -53,7 +53,8 @@ namespace eug
 	{
 	public:
 
-		EUGGraphicsEngine(uint32_t WndWidth, uint32_t WndHeight, HWND Window, ID3D12Device* pDevice, uint32_t FrameCount = 2)
+		EUGGraphicsEngine(uint32_t WndWidth, uint32_t WndHeight, HWND Window, 
+			const ComPtr<ID3D12Device> pDevice, uint32_t FrameCount = 2)
 			:m_WndWidth(WndWidth), m_WndHeight(WndHeight), m_Window(Window), m_pDevice(pDevice) 
 		{
 			m_FrameIndex = 0;
@@ -61,7 +62,6 @@ namespace eug
 		
 		~EUGGraphicsEngine()
 		{
-			
 		}
 
 		bool Init()
@@ -78,41 +78,35 @@ namespace eug
 		static const uint32_t m_FrameCount = 2;
 		//uint32_t m_FrameIndex;
 
-		uint32_t m_WndWidth;
-		uint32_t m_WndHeight;
+		uint32_t m_WndWidth = 0;
+		uint32_t m_WndHeight = 0;
 		HWND m_Window = nullptr;
 
-		ID3D12Device* m_pDevice = nullptr;
-		//std::unique_ptr<EUGD3D12CmdQueue> m_pCmdQueue;
-		//std::unique_ptr<EUGDXGIFactory> m_pFactory;
-		//std::unique_ptr<EUGDXGISwapChain> m_pSwapChain;
-		//std::unique_ptr<EUGD3D12CmdList> m_pCmdList;
-		//std::unique_ptr<EUGD3D12RenderTargetView> m_pRTV;
-		//std::unique_ptr<EUGD3D12Fence> m_pFence;
+		ComPtr<ID3D12Device> m_pDevice = nullptr;
                       
-		ComPtr<ID3D12CommandQueue>          m_pQueue;                       
-		ComPtr<IDXGISwapChain3>             m_pSwapChain;                   
-		ComPtr<ID3D12Resource>              m_pRTVBuffer[m_FrameCount];     
-		ComPtr<ID3D12CommandAllocator>      m_pCmdAllocator[m_FrameCount];  
-		ComPtr<ID3D12GraphicsCommandList>   m_pCmdList;                     
-		ComPtr<ID3D12DescriptorHeap>        m_pHeapRTV;                     
-		ComPtr<ID3D12Fence>                 m_pFence;
+		ComPtr<ID3D12CommandQueue>          m_pQueue = nullptr;                       
+		ComPtr<IDXGISwapChain3>             m_pSwapChain = nullptr;
+		ComPtr<ID3D12Resource>              m_pRTVBuffer[m_FrameCount] = {};
+		ComPtr<ID3D12CommandAllocator>      m_pCmdAllocator[m_FrameCount] = {};
+		ComPtr<ID3D12GraphicsCommandList>   m_pCmdList = nullptr;
+		ComPtr<ID3D12DescriptorHeap>        m_pHeapRTV = nullptr;
+		ComPtr<ID3D12Fence>                 m_pFence = nullptr;
 
-		ComPtr<ID3D12DescriptorHeap>           m_pHeapCBV;                     // ★追加：ディスクリプタヒープです(定数バッファビュー・シェーダリソースビュー・アンオーダードアクセスビュー)
-		ComPtr<ID3D12Resource>                 m_pVB;                          // ★追加：頂点バッファです.
-		ComPtr<ID3D12Resource>                 m_pCB[m_FrameCount];              // ★追加：定数バッファです.
-		ComPtr<ID3D12RootSignature>            m_pRootSignature;               // ★追加：ルートシグニチャです.
-		ComPtr<ID3D12PipelineState>            m_pPSO;                         // ★追加：パイプラインステートです.
+		ComPtr<ID3D12DescriptorHeap>           m_pHeapCBV = nullptr;                     // ★追加：ディスクリプタヒープです(定数バッファビュー・シェーダリソースビュー・アンオーダードアクセスビュー)
+		ComPtr<ID3D12Resource>                 m_pVB = nullptr;                          // ★追加：頂点バッファです.
+		ComPtr<ID3D12Resource>                 m_pCB[m_FrameCount] = {};              // ★追加：定数バッファです.
+		ComPtr<ID3D12RootSignature>            m_pRootSignature = nullptr;               // ★追加：ルートシグニチャです.
+		ComPtr<ID3D12PipelineState>            m_pPSO = nullptr;                         // ★追加：パイプラインステートです.
 
-		HANDLE                              m_FenceEvent;                   
-		uint64_t                            m_FenceCounter[m_FrameCount];     
-		uint32_t                            m_FrameIndex;                   
-		D3D12_CPU_DESCRIPTOR_HANDLE         m_HandleRTV[m_FrameCount];
-		D3D12_VERTEX_BUFFER_VIEW        m_VBV;                          // ★追加：頂点バッファビューです.
-		D3D12_VIEWPORT                  m_Viewport;                     // ★追加：ビューポートです.
-		D3D12_RECT                      m_Scissor;                      // ★追加：シザー矩形です.
-		ConstantBufferView<Transform>   m_CBV[m_FrameCount];              // ★追加：定数バッファビューです.
-		float                           m_RotateAngle;                  // ★追加：回転角です.
+		HANDLE                              m_FenceEvent = nullptr;
+		uint64_t                            m_FenceCounter[m_FrameCount] = {};
+		uint32_t                            m_FrameIndex = 0;                   
+		D3D12_CPU_DESCRIPTOR_HANDLE         m_HandleRTV[m_FrameCount] = {};
+		D3D12_VERTEX_BUFFER_VIEW        m_VBV = {};                          // ★追加：頂点バッファビューです.
+		D3D12_VIEWPORT                  m_Viewport = {};                     // ★追加：ビューポートです.
+		D3D12_RECT                      m_Scissor = {};                      // ★追加：シザー矩形です.
+		ConstantBufferView<Transform>   m_CBV[m_FrameCount] = {};              // ★追加：定数バッファビューです.
+		float                           m_RotateAngle = 0;                  // ★追加：回転角です.
 
 		bool InitObjects();
 

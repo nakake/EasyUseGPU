@@ -24,4 +24,19 @@ namespace eug {
 			return false;
 		}
 	}
+
+	namespace Parallel
+	{
+		bool SetParaState(EUG_PARALLEL_STATE* pParaState)
+		{
+			pParaState->FilePath = L"../../EasyUseGPU/src/" + pParaState->FilePath;
+			pParaState->pDefines.push_back({NULL,NULL});
+			return engine->EUGSetParaState(pParaState);
+		}
+
+		bool ExecutionGPU(uint32_t x, uint32_t y, uint32_t z)
+		{
+			return engine->EUGExecutionGPU(1, 1, 1);
+		}
+	}
 }
