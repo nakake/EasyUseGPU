@@ -16,9 +16,9 @@ namespace eug
 
 		~EUGD3D12Device(){}
 
-		ID3D12Device* GetDevice() const
+		ComPtr<ID3D12Device> GetDevice() const
 		{
-			return m_pDevice.Get();
+			return m_pDevice;
 		}
 
 		bool Init() 
@@ -56,6 +56,8 @@ namespace eug
 					 return true;
 				 }
 			}
+
+			m_pDevice->SetName(L"EUG_MAIN_DEVICE");
 
 			return false;
 		}

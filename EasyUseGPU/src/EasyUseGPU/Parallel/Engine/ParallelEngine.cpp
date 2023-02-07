@@ -9,31 +9,13 @@ namespace eug
     {
         if (pParaState == nullptr)
         {
-            return true;
-        }
-
-        if (!pParaState->FilePath.empty() && pParaState->EntryPoint.empty())
-        {
-            //ERROR:エントリーポイントが設定されていません
-            //ファイル指定をする場合はエントリーポイントを設定してください
             return false;
         }
 
-        if (pParaState->FilePath.empty() && !pParaState->EntryPoint.empty())
+        if (pParaState->FilePath.empty())
         {
             //ERROR:ファイル名が設定されていません
             //エントリーポイントを指定する場合はファイル名を設定してください
-            return false;
-        }
-
-        if (pParaState->TheadGroupNums.x == 0 || 
-            pParaState->TheadGroupNums.y == 0 || 
-            pParaState->TheadGroupNums.z == 0 ||
-            pParaState->TheadNums.x == 0 || 
-            pParaState->TheadNums.y == 0 || 
-            pParaState->TheadNums.z == 0  )
-        {
-            //ERROR:スレッド数およびスレッドグループ数に0を指定することはできません
             return false;
         }
         
@@ -67,50 +49,37 @@ namespace eug
         Wait();
     }
 
-	void EUGParallelEngine::Run()
-	{
-        //int srvnums = 2;
-        ////rootsig
-        //CreateRootSignature(srvnums);
-        //m_pCmdList->SetComputeRootSignature(m_pComputeRootSignature.Get());
+    bool EUGParallelEngine::ParaSetParaState(const EUG_PARALLEL_STATE* pParaState)
+    {
+        if (!ScrutinyState(pParaState))
+        {
+            return m_IsSettingParaState = false;
+        }
 
-        ////pipeline
-        ////CreatePipeline(
-        ////    L"../../EasyUseGPU/src/EasyUseGPU/Parallel/Shader/TestCS.hlsl",
-        ////    "MulMatrix", "cs_5_1");
-        //m_pCmdList->SetPipelineState(m_pComputePipeline.Get());
-        //
-        ////resource
-        //
-        //uavData.resize(4);
-        //inputData.resize(srvnums);
+        m_pParaState = pParaState;
 
-        //for (auto& a:inputData)
-        //{
-        //    a.resize(4);
-        //    int c = 10;
-        //    for (auto& b : a)
-        //    {
-        //        b = 10 + c;
-        //    }
-        //    c = 20;
-        //}
+        return m_IsSettingParaState = true;
+    }
 
-        //CreateResource();
-        //    
-        //ID3D12DescriptorHeap* descHeaps[] = { m_pResourceHeap.Get() };
-        //m_pCmdList->SetDescriptorHeaps(1, descHeaps);
+    bool EUGParallelEngine::ParaExecutionGPU(uint32_t x, uint32_t y, uint32_t z)
+    {
+        if (!m_IsSettingParaState)return m_IsSettingParaState;
 
-        //SetResource(srvnums);
+        //rootsig
+        CreateRootSignature(static_cast<uint32_t>(m_pUploadBuffers.size()));
+        m_pCmdList->SetComputeRootSignature(m_pComputeRootSignature.Get());
 
-        //m_pCmdList->Dispatch(1, 1, 1);
+        //pipeline
+        CreatePipeline(m_pParaState);
+        m_pCmdList->SetPipelineState(m_pComputePipeline.Get());
 
-        //GetGPUResource();
+        ID3D12DescriptorHeap* descHeaps[] = { m_pResourceHeap.Get() };
+        m_pCmdList->SetDescriptorHeaps(1, descHeaps);
 
-        //CommandExecute();
+        SetResource();
 
-        //ReadGPUData(m_pReadBuffer, uavData);
-
-        //auto a = uavData[0];
+        m_pCmdList->Dispatch(x, y, z);
+        
+        return true;
     }
 }

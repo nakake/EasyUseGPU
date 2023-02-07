@@ -5,31 +5,6 @@ namespace eug
     bool EUGGraphicsEngine::InitObjects()
     {
 
-        //m_pCmdQueue.reset(new EUGD3D12CmdQueue(m_pDevice));
-        //m_pCmdQueue->Init(D3D12_COMMAND_LIST_TYPE_DIRECT, D3D12_COMMAND_QUEUE_PRIORITY_NORMAL);
-        //
-        //m_pFactory.reset(new EUGDXGIFactory());
-        //m_pFactory->Init();
-        //
-        //m_pSwapChain.reset(new EUGDXGISwapChain(
-        //	m_pDevice, m_pFactory->GetFactory4(), m_pCmdQueue->GetCmdQueue()));
-        //m_pSwapChain->Init(
-        //	m_WndHeight, m_WndWidth,m_FrameCount, m_Window);
-
-        //m_FrameIndex = m_pSwapChain->GetFrameIndex();
-        //
-        //m_pCmdList.reset(new EUGD3D12CmdList(m_pDevice, m_FrameCount));
-        //m_pCmdList->Init(m_FrameIndex);
-        //
-        //m_pRTV.reset(new EUGD3D12RenderTargetView(
-        //	m_pSwapChain->GetSwapChain(), m_pDevice, m_FrameCount));
-        //m_pRTV->Init();
-        //
-        //m_pFence.reset(new EUGD3D12Fence(m_pDevice, m_FrameCount));
-        //m_pFence->Init(m_FrameIndex);
-
-        //m_pCmdList->CloseCmdList();
-
         HRESULT  hr;
         {
             D3D12_COMMAND_QUEUE_DESC desc = {};
@@ -195,7 +170,7 @@ namespace eug
         }
 
         // コマンドリストを閉じる.
-        //m_pCmdList->Close();
+        m_pCmdList->Close();
 
         return true;
     }

@@ -32,10 +32,6 @@ namespace eug
 		{
 			return GraphicsInit();
 		}
-
-		void testrender() {
-			//m_pGraphicsEngine->Render();
-		}
 	
 		void StartRender()
 		{
@@ -50,16 +46,35 @@ namespace eug
 			}
 		}
 
-		void ComputeShader()
+		bool EUGSetParaState(const EUG_PARALLEL_STATE* pParaState)
 		{
-			m_pParaEngine->Run();
+			return m_pParaEngine->ParaSetParaState(pParaState);
 		}
 
-		void mulMatrix(vector<int>& data1, vector<int>& data2)
+		bool EUGExecutionGPU(uint32_t x, uint32_t y, uint32_t z)
 		{
-			//あとで計算結果の行列の大きさを計算する仕組みを作る
-			//行列計算ができるかも確認
-			m_pParaEngine->MulMatrix(data1, data2, 4);
+			if (x <= 0 || y <= 0 || z <= 0) return false;
+			return m_pParaEngine->ParaExecutionGPU(x, y ,z);
+		}
+
+	public:
+
+		template<typename T>
+		bool EUGSetUploadBufferData(const vector<T>& pUploadData)
+		{
+			return m_pParaEngine->ParaSetUploadBufferData(pUploadData);
+		}
+
+		template<typename T>
+		bool EUGSetOutputBufferData(const vector<T>& pOutputData)
+		{
+			return m_pParaEngine->ParaSetOutputBufferData(pOutputData);
+		}
+
+		template<typename T>
+		bool EUGGetBufferDataFromGPU(vector<T>& pOutputData, uint32_t DataIndex)
+		{
+			return m_pParaEngine->ParaGetBufferDataFromGPU(pOutputData, DataIndex);
 		}
 
 	private:

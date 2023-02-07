@@ -12,47 +12,74 @@
 
 
 namespace eug
-{	
-
-	struct EUG_RAPALLEL_THREAD_NUMS
-	{
-		UINT x = 1;
-		UINT y = 1;
-		UINT z = 1;
-	};
+{
+	using std::vector;
 
 	struct EUG_PARALLEL_STATE
 	{
-		EUG_RAPALLEL_THREAD_NUMS TheadNums;
-		EUG_RAPALLEL_THREAD_NUMS TheadGroupNums;
-		//vector<D3D_SHADER_MACRO> pDefines;
+		vector<D3D_SHADER_MACRO> pDefines;
 		std::wstring FilePath;
-		std::string  EntryPoint;
+		std::string  EntryPoint = "main";
 		std::string  VersionHLSL = "cs_5_1";
 	};
 
-	using std::vector;
+
 
 	class EUGParallelEngine
 	{	
 	public:
 
-		EUGParallelEngine(ID3D12Device* pDevice):
+		EUGParallelEngine(const ComPtr<ID3D12Device> pDevice):
 			m_pDevice(pDevice)
 		{
 		}
 
-		~EUGParallelEngine(){}
+		~EUGParallelEngine()
+		{
+		}
 		
 		void Init();
 
-		void Run();
+		bool ParaSetParaState(const EUG_PARALLEL_STATE* pParaState);
 
-		void Test();
+		bool ParaExecutionGPU(uint32_t x, uint32_t y, uint32_t z);
+
+	//template使用関数
+	public:
+
+		template<typename T>
+		bool ParaSetUploadBufferData(const vector<T>& pUploadData)
+		{
+			return CreateUploadResource((void*)pUploadData.data(),
+				static_cast<uint32_t>(pUploadData.size() * sizeof(pUploadData[0])));
+		}
+
+		template<typename T>
+		bool ParaSetOutputBufferData(const vector<T>& pUploadData)
+		{
+			return CreateReadResource(static_cast<uint32_t>(pUploadData.size() * sizeof(pUploadData[0])));
+		}
+
+		template<typename T>
+		bool ParaGetBufferDataFromGPU(vector<T>& pOutputData, uint32_t DataIndex)
+		{
+			if (DataIndex >= m_ReadBufferNum)
+			{
+				return false;
+			}
+
+			GetGPUResource();
+
+			CommandExecute();
+
+			ReadGPUData(m_pReadBuffer[DataIndex], pOutputData);
+
+			return true;
+		}
 
 	private:
 
-		ID3D12Device* m_pDevice = nullptr;
+		ComPtr<ID3D12Device> m_pDevice = nullptr;
 		ComPtr<ID3D12GraphicsCommandList> m_pCmdList = nullptr;
 		ComPtr<ID3D12CommandAllocator> m_pAllocator = nullptr;
 		ComPtr<ID3D12CommandQueue> m_pQueue = nullptr;
@@ -63,25 +90,34 @@ namespace eug
 		ComPtr<ID3D12PipelineState> m_pComputePipeline = nullptr;
 		
 
-		ComPtr<ID3D12Resource> m_pOutputBuffer = nullptr;
-		ComPtr<ID3D12Resource> m_pReadBuffer = nullptr;
+		vector<ComPtr<ID3D12Resource>> m_pOutputBuffer;
+		vector<ComPtr<ID3D12Resource>> m_pReadBuffer;
 		vector<ComPtr<ID3D12Resource>> m_pInputBuffers;
 		vector<ComPtr<ID3D12Resource>> m_pUploadBuffers;
+		vector<ComPtr<ID3D12Resource>> m_pInput2DBuffers;
+		vector<ComPtr<ID3D12Resource>> m_pUpload2DBuffers;
 
-		vector<float>	uavData;
-		vector<vector<float>>	inputData;
+		uint32_t m_UploadBufferNum = 0;
+		uint32_t m_Upload2DBufferNum = 0;
+		uint32_t m_ReadBufferNum = 0;
+
+		const EUG_PARALLEL_STATE* m_pParaState = nullptr;
+
+		bool m_IsSettingParaState = false;
 
 	private:
 
-		bool CreateList();
-		bool CreateDescriptor();
-		bool CreateQueue();
-		bool CreateResource(const vector<int>& pOutputData);
 		bool CreateRootSignature(uint32_t SrvNums);
 		bool CreatePipeline(const EUG_PARALLEL_STATE* pParaState);
 
-		bool SetResource(uint32_t SrvNums, vector<vector<int>>& inputData);
-		//bool SetResource(uint32_t SrvNums, vector<vector<float>>& inputData);
+
+		bool CreateReadResource(const uint32_t DataSize);
+		bool CreateUploadResource(const void* pData, const uint32_t DataSize);
+
+		bool CreateUpload2DResource(
+			const void* pData, const uint32_t SizeX, const uint32_t SizeY, const uint32_t DataByte);
+
+		bool SetResource();
 		bool GetGPUResource();
 		
 
@@ -91,15 +127,7 @@ namespace eug
 		bool InitPara();
 
 		bool ScrutinyState(const EUG_PARALLEL_STATE* pParaState);
-	
 
-	//template使用関数
-	public:
-
-		void MulMatrix(vector<int>& Data1, vector<int>& Data2, int ResultMatrixSize, 
-			const EUG_PARALLEL_STATE* pParaState = nullptr);
-		void MulMatrix(vector<float>& Data1, vector<float>& Data2, int ResultMatrixSize,
-			const EUG_PARALLEL_STATE* pParaState = nullptr);
 
 	private:
 		template<typename T>

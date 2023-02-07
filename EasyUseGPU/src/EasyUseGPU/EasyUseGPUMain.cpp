@@ -16,17 +16,6 @@ namespace eug
 
 int WINAPI _tWinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPTSTR, _In_ int) 
 {
-
-#if defined(DEBUG) || defined(_DEBUG)
-	{
-		ComPtr<ID3D12Debug> debug;
-
-		HRESULT hr = D3D12GetDebugInterface(IID_PPV_ARGS(debug.GetAddressOf()));
-
-		if (SUCCEEDED(hr)) debug->EnableDebugLayer();
-	}
-#endif
-
 	using namespace eug;
 
 	EngineCreate();

@@ -10,31 +10,11 @@ namespace eug
     {
         ComPtr<ID3DBlob> csBlob = nullptr;
         ComPtr<ID3DBlob> errBlob = nullptr;
-        
-        EUG_PARALLEL_STATE ParaState = {};
-        
-        if (pParaState == nullptr)
-        {
-            //ステート設定がなかった場合の処理を入れる
-            
-            ParaState.FilePath = L"../../EasyUseGPU/src/EasyUseGPU/Parallel/Shader/DefaultCS.hlsl";
-            ParaState.EntryPoint = "MulIntMatrix";
-        }
-        else
-        {
-            ParaState = *pParaState;
-        }
 
-        D3D_SHADER_MACRO pDefines[] = {
-            {"threadX", "2"},
-            {"threadY", "2"},
-            {"threadZ", "1"},
-            { NULL , NULL }
-        };
 
         HRESULT Result = D3DCompileFromFile(
-            ParaState.FilePath.c_str(),pDefines, nullptr, 
-            ParaState.EntryPoint.c_str(), ParaState.VersionHLSL.c_str(),
+            pParaState->FilePath.c_str(),pParaState->pDefines.data(), nullptr,
+            pParaState->EntryPoint.c_str(), pParaState->VersionHLSL.c_str(),
             0, 0, &csBlob, &errBlob);
 
         if (FAILED(Result))
