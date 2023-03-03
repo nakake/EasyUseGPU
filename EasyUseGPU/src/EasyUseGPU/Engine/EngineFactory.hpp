@@ -6,6 +6,6 @@ namespace eug
 	void EngineCreate() 
 	{
 		engine.reset(new EasyUseGPUEngine);
-		//engine->Init();
+		engine->Init();
 	}
 }

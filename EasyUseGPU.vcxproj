@@ -155,14 +155,14 @@
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Parallel\Engine\EngineInit.cpp" />
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Parallel\Engine\ParallelEngine.cpp" />
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Parallel\Modules\Pipeline\ParaPipeline.cpp" />
-    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Parallel\Modules\Resource\UAV\ParaResource.cpp" />
+    <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Parallel\Modules\Resource\ParaResource.cpp" />
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Parallel\Modules\RootSignature\ParaRootSignature.cpp" />
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Resource\ResourceManager\CreateUploadBuffer.cpp" />
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\System\System.cpp" />
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Window\Window.cpp" />
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Window\WindowOptions.cpp" />
     <ClCompile Include="EasyUseGPU\src\EasyUseGPU\Window\WindowProc.cpp" />
-    <ClCompile Include="EasyUseGPU\src\userMain.cpp" />
+    <ClCompile Include="user\userMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EasyUseGPU\include\EasyUseGPU.hpp" />
@@ -194,11 +194,6 @@
     <ClInclude Include="EasyUseGPU\src\EasyUseGPU\Window\WindowProc.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="EasyUseGPU\src\ComputeShader.hlsl">
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
-      <FileType>Document</FileType>
-    </CustomBuild>
     <FxCompile Include="EasyUseGPU\src\EasyUseGPU\Graphics\Shader\TestPixelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
@@ -219,6 +214,9 @@
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.1</ShaderModel>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.1</ShaderModel>
     </FxCompile>
+    <CustomBuild Include="user\ComputeShader.hlsl">
+      <FileType>Document</FileType>
+    </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

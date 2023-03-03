@@ -19,7 +19,6 @@ int WINAPI _tWinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPTSTR, _In_ int)
 	using namespace eug;
 
 	EngineCreate();
-	engine->Init();
 	Main();
  	return 0;
 }
