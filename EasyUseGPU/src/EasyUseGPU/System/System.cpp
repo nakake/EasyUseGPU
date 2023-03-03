@@ -3,7 +3,7 @@
 
 namespace eug {
 	namespace System {
-		//検証用
+		//Windowsアプリケーション用の実行関数
 		
 		bool Run() {
 			engine->Init();
@@ -14,6 +14,7 @@ namespace eug {
 			return true;
 		}
 
+		//Windowsアプリケーション用の更新関数
 		bool Updata() {
 			engine->EndRender();
 
@@ -29,14 +30,16 @@ namespace eug {
 	{
 		bool SetParaState(EUG_PARALLEL_STATE* pParaState)
 		{
-			pParaState->FilePath = L"../../EasyUseGPU/src/" + pParaState->FilePath;
+			if (pParaState->FilePath.empty()) return false;
+			pParaState->FilePath = L"../../user/" + pParaState->FilePath;
 			pParaState->pDefines.push_back({NULL,NULL});
 			return engine->EUGSetParaState(pParaState);
 		}
 
-		bool ExecutionGPU(uint32_t x, uint32_t y, uint32_t z)
+		bool ExecutionGPU(uint32_t x = 1, uint32_t y = 1, uint32_t z = 1)
 		{
-			return engine->EUGExecutionGPU(1, 1, 1);
+			if (x < 1 || y < 1 || z < 1) return false;
+			return engine->EUGExecutionGPU(x, y, z);
 		}
 	}
 }

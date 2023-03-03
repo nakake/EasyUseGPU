@@ -2,7 +2,7 @@ StructuredBuffer<int> Input1:register(t0);
 StructuredBuffer<int> Input2:register(t1);
 RWStructuredBuffer<int> Output:register(u0);
 
-#define THREAD_X 9
+#define THREAD_X 1024
 #define THREAD_Y 1
 #define THREAD_Z 1
 
